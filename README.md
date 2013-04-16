@@ -63,7 +63,7 @@ end
 def alter_bigint_primary_key t_name, pk_name = :id
 	...
 end
-``
+```
 
 
 ## Contributing
