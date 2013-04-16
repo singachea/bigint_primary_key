@@ -18,6 +18,52 @@ Or install it yourself as:
 
 ## Usage
 
+You can use it in your migration file. 
+
+(create table without id)
+```ruby
+class CreateCakes < ActiveRecord::Migration
+  def change
+    create_table :cakes, id: false do |t|
+      t.string :name
+
+      t.timestamps
+    end
+
+    add_bigint_primary_key :cakes, :id
+  end
+
+end
+```
+
+(create table with default id)
+```ruby
+class CreateCakes < ActiveRecord::Migration
+  def change
+    create_table :cakes do |t|
+      t.string :name
+
+      t.timestamps
+    end
+
+    alter_bigint_primary_key :cakes, :id
+  end
+end
+```
+
+You can leave `id` out if you have default setting. `add_bigint_primary_key :cakes` and `alter_bigint_primary_key :cakes`
+
+
+Here are the method definitions:
+```ruby
+def add_bigint_primary_key t_name, pk_name = :id
+	...
+end
+
+def alter_bigint_primary_key t_name, pk_name = :id
+	...
+end
+``
 
 
 ## Contributing
